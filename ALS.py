@@ -65,7 +65,8 @@ def rmse(user2movie):
     for m in range(len(user2movie)):
         try:
             for n, r in user2movie[m]:
-                s += (r-np.dot(U[:, m], V[:, n])-user_biases[m]-item_biases[n])**2
+                s += (r-np.dot(U[:, m], V[:, n]) -
+                      user_biases[m]-item_biases[n])**2
                 N += 1
         except TypeError:
             print(user2movie[m])

@@ -32,9 +32,9 @@ for K_metric in [10, 20, 100]:
     U = np.random.normal(0, 1/math.sqrt(K), (K, len(users)))
     V = np.random.normal(0, 1/math.sqrt(K), (K, len(movies)))
 
-
     # Define the loss function
     def metrics_K(user2movie):
+
         hits = 0
         num_positives = 0
         for u in range(len(user2movie)):
@@ -47,7 +47,6 @@ for K_metric in [10, 20, 100]:
         precision = hits/(len(user2movie)*K_metric)
         recall = hits/num_positives
         return precision, recall
-
 
     # BPR applied to the training set
     for n in range(num_iterations):
@@ -62,11 +61,11 @@ for K_metric in [10, 20, 100]:
                     first_term = math.exp(-xuij)/(1+math.exp(-xuij))
 
                     U[:, u] = U[:, u]+alpha*(first_term*(V[:, i]-V[:, j])
-                                            + lam*np.linalg.norm(U[:, u]))
+                                             + lam*np.linalg.norm(U[:, u]))
                     V[:, i] = V[:, i]+alpha*(first_term*U[:, u]
-                                            + lam*np.linalg.norm(V[:, i]))
+                                             + lam*np.linalg.norm(V[:, i]))
                     V[:, j] = V[:, j]+alpha*(first_term*(-U[:, u])
-                                            + lam*np.linalg.norm(V[:, j]))
+                                             + lam*np.linalg.norm(V[:, j]))
 
         precision, recall = metrics_K(train_utom)
         print('Train Precision@'+str(K_metric)+' -> '+str(precision), end='')
