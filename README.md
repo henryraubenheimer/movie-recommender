@@ -1,0 +1,1 @@
+A submission for my master's degree. Movie recommendations are made based off of data from the MovieLens dataset. Recommendations are made primarily with Alternating Least Squares, but the repository includes code that implements Bayesian Personalised Ranking, an AB test simulation and data exploration.
